@@ -3,15 +3,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ch.bbbaden.IDPA</groupId>
-    <artifactId>Abschreibungen</artifactId>
+    <artifactId>depreciation</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Abschreibungen</name>
+    <name>depreciation</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <mainClass>ch.bbbaden.IDPA.Starter.starter</mainClass>
+        <mainClass>ch.bbbaden.IDPA.Main.main</mainClass>
     </properties>
 
     <organization>

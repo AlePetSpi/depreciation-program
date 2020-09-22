@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="Main" prefHeight="636.0" prefWidth="519.0" stylesheets="@/styles/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.IDPA.Output.OutputController">
+   <children>
+      <Label layoutX="64.0" layoutY="38.0" text="Result" textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="96.0" prefHeight="30.0" text="Acquisition value: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="122.0" prefHeight="30.0" text="Percent: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="147.0" prefHeight="30.0" text="Useful life: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="173.0" prefHeight="30.0" text="Depreciation type: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="198.0" prefHeight="30.0" text="Booking type: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="223.0" prefHeight="30.0" text="Remaining amount: " textFill="WHITE">
+         <font>
+            <Font name="Eras Demi ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblacquisitionValue" layoutX="261.0" layoutY="96.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblpercent" layoutX="260.0" layoutY="121.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblusefulLife" layoutX="260.0" layoutY="146.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbldepreciationType" layoutX="260.0" layoutY="172.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblbookingType" layoutX="260.0" layoutY="197.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblremainingAmount" layoutX="260.0" layoutY="223.0" prefHeight="30.0" prefWidth="130.0" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="18.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="butagain" buttonType="RAISED" layoutX="107.0" layoutY="509.0" onAction="#again" prefHeight="47.0" prefWidth="306.0" ripplerFill="#9d5b38" style="-fx-background-color: #e78956;" text="Write off again" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="butclose" buttonType="RAISED" layoutX="151.0" layoutY="566.0" onAction="#close" prefHeight="47.0" prefWidth="218.0" ripplerFill="#9d5b38" style="-fx-background-color: #e78956;" text="Close programm" textFill="WHITE">
+         <font>
+            <Font name="Eras Light ITC" size="20.0" />
+         </font>
+      </JFXButton>
+      <JFXListView fx:id="lvbookingRates" layoutX="46.0" layoutY="265.0" prefHeight="230.0" prefWidth="429.0" />
+   </children>
+</AnchorPane>

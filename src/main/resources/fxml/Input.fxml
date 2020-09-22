@@ -9,19 +9,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="Main" prefHeight="526.0" prefWidth="550.0" styleClass="AnchorPane" stylesheets="@/styles/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.IDPA.Eingabe.EingabeController">
+<AnchorPane id="Main" prefHeight="526.0" prefWidth="550.0" styleClass="AnchorPane" stylesheets="@/styles/Style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.bbbaden.IDPA.Input.InputController">
    <children>
-      <Label layoutX="60.0" layoutY="100.0" prefHeight="40.0" prefWidth="180.0" text="Anschaffungswert: *" textFill="WHITE" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="103.0">
+      <Label layoutX="60.0" layoutY="100.0" prefHeight="40.0" prefWidth="180.0" text="Acquisition value: *" textFill="WHITE" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="103.0">
          <font>
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <JFXTextField id="text" fx:id="anschaffungswert" focusColor="#872a05" layoutX="262.0" layoutY="103.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="103.0">
+      <JFXTextField id="text" fx:id="lblacquisitionValue" focusColor="#872a05" layoutX="262.0" layoutY="103.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="103.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
       </JFXTextField>
-      <Label layoutX="58.0" layoutY="41.0" text="Helfer der Abschreibung" textFill="WHITE">
+      <Label layoutX="58.0" layoutY="41.0" text="Depreciation helper" textFill="WHITE">
          <font>
             <Font name="Eras Demi ITC" size="30.0" />
          </font>

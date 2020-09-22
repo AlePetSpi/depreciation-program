@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.bbbaden.IDPA.Starter;
+package ch.bbbaden.IDPA.Main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author Alexander
  */
-public class starter extends Application {
+public class main extends Application {
     
     /**
      * 
@@ -24,7 +24,7 @@ public class starter extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Eingabe.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Input.fxml"));
         
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Style.css");
