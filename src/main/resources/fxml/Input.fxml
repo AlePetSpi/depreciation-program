@@ -16,7 +16,7 @@
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <JFXTextField id="text" fx:id="lblacquisitionValue" focusColor="#872a05" layoutX="262.0" layoutY="103.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="103.0">
+      <JFXTextField id="text" fx:id="lblAcquisitionValue" focusColor="#872a05" layoutX="262.0" layoutY="103.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="395.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="103.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
@@ -26,69 +26,69 @@
             <Font name="Eras Demi ITC" size="30.0" />
          </font>
       </Label>
-      <Label layoutX="60.0" layoutY="162.0" prefHeight="34.0" prefWidth="154.0" text="Nutzungsdauer: *" textFill="WHITE" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="162.0">
+      <Label layoutX="60.0" layoutY="162.0" prefHeight="34.0" prefWidth="154.0" text="Useful life: *" textFill="WHITE" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="331.0" AnchorPane.topAnchor="162.0">
          <font>
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <JFXRadioButton fx:id="radiodegressiv" layoutX="162.0" layoutY="261.0" prefHeight="34.0" prefWidth="103.0" text="degressiv" textFill="WHITE" AnchorPane.bottomAnchor="237.0" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="261.0">
+      <JFXRadioButton fx:id="radDegressive" layoutX="162.0" layoutY="261.0" prefHeight="34.0" prefWidth="103.0" text="degressive" textFill="WHITE" AnchorPane.bottomAnchor="237.0" AnchorPane.leftAnchor="162.0" AnchorPane.rightAnchor="285.0" AnchorPane.topAnchor="261.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
          <toggleGroup>
-            <ToggleGroup fx:id="radioabschreibungsart" />
+            <ToggleGroup fx:id="radDepreciationType" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="radiolinear" layoutX="331.0" layoutY="259.0" prefHeight="34.0" prefWidth="65.0" text="linear" textFill="WHITE" toggleGroup="$radioabschreibungsart" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="154.0" AnchorPane.topAnchor="259.0">
+      <JFXRadioButton fx:id="radLinear" layoutX="331.0" layoutY="259.0" prefHeight="34.0" prefWidth="65.0" text="linear" textFill="WHITE" toggleGroup="$radDepreciationType" AnchorPane.bottomAnchor="239.0" AnchorPane.leftAnchor="331.0" AnchorPane.rightAnchor="154.0" AnchorPane.topAnchor="259.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
       </JFXRadioButton>
-      <Label layoutX="65.0" layoutY="214.0" prefHeight="34.0" prefWidth="180.0" text="Abschreibungsart: *" textFill="WHITE" AnchorPane.bottomAnchor="284.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="214.0">
+      <Label layoutX="65.0" layoutY="214.0" prefHeight="34.0" prefWidth="180.0" text="Depreciation type: *" textFill="WHITE" AnchorPane.bottomAnchor="284.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="305.0" AnchorPane.topAnchor="214.0">
          <font>
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblprozentrestbetrag" layoutX="61.0" layoutY="314.0" prefHeight="34.0" prefWidth="122.0" text="Prozent: *" textFill="WHITE" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="367.0" AnchorPane.topAnchor="314.0">
+      <Label fx:id="lblPercentAndRemainingAmount" layoutX="61.0" layoutY="314.0" prefHeight="34.0" prefWidth="193.0" text="Percent: *" textFill="WHITE" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="292.0" AnchorPane.topAnchor="314.0">
          <font>
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <JFXTextField id="text" fx:id="prozent" focusColor="#872a05" layoutX="262.0" layoutY="325.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="314.0">
+      <JFXTextField id="text" fx:id="lblPercent" focusColor="#872a05" layoutX="284.0" layoutY="314.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="284.0" AnchorPane.rightAnchor="122.0" AnchorPane.topAnchor="314.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
       </JFXTextField>
-      <JFXRadioButton fx:id="direkt" layoutX="162.0" layoutY="393.0" prefHeight="34.0" text="direkt" textFill="WHITE" AnchorPane.leftAnchor="162.0">
+      <JFXRadioButton fx:id="radDirectly" layoutX="162.0" layoutY="393.0" prefHeight="34.0" text="directly" textFill="WHITE" AnchorPane.leftAnchor="162.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
          <toggleGroup>
-            <ToggleGroup fx:id="radiobuchungsart" />
+            <ToggleGroup fx:id="radBookingType" />
          </toggleGroup>
       </JFXRadioButton>
-      <JFXRadioButton fx:id="indirekt" layoutX="331.0" layoutY="393.0" prefHeight="34.0" text="indirekt" textFill="WHITE" toggleGroup="$radiobuchungsart" AnchorPane.leftAnchor="331.0">
+      <JFXRadioButton fx:id="radIndirectly" layoutX="331.0" layoutY="393.0" prefHeight="34.0" text="indirectly" textFill="WHITE" toggleGroup="$radBookingType" AnchorPane.leftAnchor="331.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
       </JFXRadioButton>
-      <Label layoutX="65.0" layoutY="359.0" prefHeight="34.0" text="Buchungsart: *" textFill="WHITE" AnchorPane.leftAnchor="65.0">
+      <Label layoutX="65.0" layoutY="359.0" prefHeight="34.0" text="Booking type: *" textFill="WHITE" AnchorPane.leftAnchor="65.0">
          <font>
             <Font name="Eras Demi ITC" size="18.0" />
          </font>
       </Label>
-      <JFXButton fx:id="butanzeigen" buttonType="RAISED" layoutX="122.0" layoutY="454.0" onAction="#abschreibunganzeigen" prefHeight="47.0" prefWidth="306.0" ripplerFill="#9d5b38" style="-fx-background-color: #e78956;" text="Abschreibung anzeigen" textFill="WHITE">
+      <JFXButton fx:id="butshow" buttonType="RAISED" layoutX="122.0" layoutY="454.0" onAction="#showDepreciation" prefHeight="47.0" prefWidth="306.0" ripplerFill="#9d5b38" style="-fx-background-color: #e78956;" text="Show depreciation" textFill="WHITE">
          <font>
             <Font name="Eras Light ITC" size="20.0" />
          </font>
       </JFXButton>
-      <JFXTextField id="text" fx:id="restbetrag" focusColor="#872a05" layoutX="262.0" layoutY="314.0" prefHeight="34.0" prefWidth="144.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" visible="false" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="314.0">
+      <JFXTextField id="text" fx:id="lblRemainingAmount" focusColor="#872a05" layoutX="262.0" layoutY="314.0" prefHeight="34.0" prefWidth="180.0" stylesheets="@../../../../css/Style.css" text="0" unFocusColor="WHITE" visible="false" AnchorPane.bottomAnchor="184.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="314.0">
          <font>
             <Font name="Eras Light ITC" size="18.0" />
          </font>
       </JFXTextField>
-      <Spinner fx:id="spinnerjahre" layoutX="262.0" layoutY="162.0" prefHeight="34.0" prefWidth="144.0" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="162.0" />
-      <Label layoutX="428.0" layoutY="20.0" text="* Pflichtfelder" textFill="WHITE">
+      <Spinner fx:id="spinyears" layoutX="262.0" layoutY="162.0" prefHeight="34.0" prefWidth="144.0" AnchorPane.bottomAnchor="336.0" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="144.0" AnchorPane.topAnchor="162.0" />
+      <Label layoutX="428.0" layoutY="20.0" text="* Required fields" textFill="WHITE">
          <font>
             <Font name="Eras Light ITC" size="15.0" />
          </font>

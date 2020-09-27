@@ -69,16 +69,16 @@ public class OutputController implements Initializable {
      * Zeigt Werte an
      */
     private void init() {
-        depreciationType = model.getLod() == 'l' ? "Linear" : "Degressiv";
-        text = model.getLod() == 'l' ? model.getRestbetragzahl()+"" : model.round('d')+"";
-        bookingType = model.getLoid() == 'i' ? "Indrekt" : "Direkt";
-        lblacquisitionValue.setText("" + model.getAnschaff());
-        lblpercent.setText("" + model.getProzentzahl());
-        lblusefulLife.setText("" + model.getJahre());
+        depreciationType = model.getLinareOrDegressive() == 'l' ? "Linear" : "Degressiv";
+        text = model.getLinareOrDegressive() == 'l' ? model.getRemainingValue()+"" : model.getRound('d')+"";
+        bookingType = model.getDirectlyOrIndirectly()== 'i' ? "Indrekt" : "Direkt";
+        lblacquisitionValue.setText("" + model.getAcquisition());
+        lblpercent.setText("" + model.getPercentNumber());
+        lblusefulLife.setText("" + model.getYears());
         lbldepreciationType.setText(depreciationType);
         lblbookingType.setText(bookingType);
         lblremainingAmount.setText("" + text);
-        for (int i = 0; i < model.getJahre(); i++) {
+        for (int i = 0; i < model.getYears(); i++) {
             lvbookingRates.getItems().add(model.getBuchungssaetze(i));
         }
 

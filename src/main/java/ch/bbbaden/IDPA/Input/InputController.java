@@ -34,42 +34,42 @@ import javax.swing.event.ChangeListener;
 public class InputController implements ChangeListener, Initializable {
 
     private Stage stage;
-    private int anschaff;
-    private int prozentzahl;
-    private int restbetragzahl;
-    private int nutzungsjahre;
+    private int acquisition;
+    private int percentNumber;
+    private int remainingValue;
+    private int usefulLife;
     private Model model = Model.getInstance();
 
     @FXML
-    private Spinner<Integer> spinnerjahre;
+    private JFXTextField lblAcquisitionValue;
     @FXML
-    private JFXRadioButton radiodegressiv;
+    private JFXRadioButton radDegressive;
     @FXML
-    private JFXRadioButton radiolinear;
+    private ToggleGroup radDepreciationType;
     @FXML
-    private Label lblprozentrestbetrag;
+    private JFXRadioButton radLinear;
     @FXML
-    private JFXTextField prozent;
+    private JFXTextField lblPercent;
     @FXML
-    private JFXRadioButton direkt;
+    private JFXRadioButton radDirectly;
     @FXML
-    private JFXRadioButton indirekt;
+    private ToggleGroup radBookingType;
     @FXML
-    private JFXTextField restbetrag;
+    private JFXRadioButton radIndirectly;
     @FXML
-    private ToggleGroup radioabschreibungsart;
+    private JFXButton butshow;
     @FXML
-    private ToggleGroup radiobuchungsart;
+    private JFXTextField lblRemainingAmount;
     @FXML
-    private JFXButton butanzeigen;
+    private Spinner<Integer> spinyears;
     @FXML
-    private JFXTextField lblacquisitionValue;
+    private Label lblPercentAndRemainingAmount;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.spinnerjahre.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100));
-        radiodegressiv.setSelected(true);
-        direkt.setSelected(true);
+        this.spinyears.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 100));
+        radDegressive.setSelected(true);
+        radDirectly.setSelected(true);
         radiobuttongroup();
     }
 
@@ -79,20 +79,17 @@ public class InputController implements ChangeListener, Initializable {
      * @throws IOException Stage loader Exception
      */
     @FXML
-    private void abschreibunganzeigen(ActionEvent event) throws IOException {
-        if (datenuebertragung() == false) {
-
-            JOptionPane.showMessageDialog(null, "Achten Sie auf folgende Fehlereingaben:\n"
-                    + "\n1. Buchstaben oder andere Zeichen wurden eingegeben"
-                    + "\n2. Negative Zahlen oder Null wurden eingegeben"
-                    + "\n3. Prozentzahl darf nicht grösser oder gleich 100 sein"
-                    + "\n4. Restbetrag ist grösser als Anschaffungswert", "Warnung", JOptionPane.ERROR_MESSAGE);
-
-
-        } else {
+    private void showDepreciation(ActionEvent event) throws IOException {
+        if (isDataTransmission() == false) {
+            JOptionPane.showMessageDialog(null, "Requirements for a successful entry:\n"
+                    + "\n1. It cannot contain any letters or words"
+                    + "\n2. Negative numbers or zero are not allowed"
+                    + "\n3. Percent must not be greater than or equal to 100"
+                    + "\n4. The remaining amount must not be greater than the purchase price", "warning", JOptionPane.ERROR_MESSAGE);
+        }else {            
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.close();
-
+            
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/fxml/Output.fxml"));
             loader.load();
@@ -100,7 +97,7 @@ public class InputController implements ChangeListener, Initializable {
             Parent root = loader.getRoot();
             stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Ergebnisse");
+            stage.setTitle("Output");
             stage.setResizable(false);
             stage.show();
         }
@@ -111,68 +108,67 @@ public class InputController implements ChangeListener, Initializable {
      *
      * @return ob Datenübertragung funktioniert hat
      */
-    private boolean datenuebertragung() {
-        if (fehlerEingabeRestbetrag() == true && fehlerEingabeAnschaffungswert() == true) {
-            char lod = 0;
-            char doid = 0;
-            doid = this.indirekt.isSelected() ? 'i' : 'd';
-            lod = this.radiolinear.isSelected() ? 'l' : 'd';
+    private boolean isDataTransmission() {
+        if (isErrorInputbyRemainingAmount() == true && isErrorInputbyAcquisitionValue() == true) {
+        char linareOrDegressive;
+        char directlyOrIndirectly;
+        directlyOrIndirectly = this.radIndirectly.isSelected() ? 'i' : 'd';
+        linareOrDegressive = this.radLinear.isSelected() ? 'l' : 'd';
 
-            model.setAnschaff(anschaff);
-            model.setJahre(nutzungsjahre);
-            model.setLoid(doid);
-            model.setLod(lod);
-            model.setProzentzahl(prozentzahl);
-            model.setRestbetragzahl(restbetragzahl);
-            return true;
+        model.setAcquisition(acquisition);
+        model.setYears(usefulLife);
+        model.setDirectlyOrIndirectly(directlyOrIndirectly);
+        model.setLinareOrDegressive(linareOrDegressive);
+        model.setPercentNumber(percentNumber);
+        model.setRemainingValue(remainingValue);
+        return true;
         } else {
             return false;
         }
-
     }
 
     /**
      *
      * @return ob Eingabe des Restbetrags gültig ist
      */
-    private boolean fehlerEingabeRestbetrag() {
-        if (radiolinear.isSelected()) {
+    private boolean isErrorInputbyRemainingAmount() {
+        if (radLinear.isSelected()) {
             try {
-                anschaff = Integer.parseInt(this.lblacquisitionValue.getText());
-                restbetragzahl = Integer.parseInt(this.restbetrag.getText());
-                if (restbetragzahl < 0 || restbetragzahl >= anschaff) {
+                acquisition = Integer.parseInt(this.lblAcquisitionValue.getText());
+                remainingValue = Integer.parseInt(this.lblRemainingAmount.getText());
+                if (remainingValue < 0 || remainingValue >= acquisition) {
                     return false;
                 }
-                nutzungsjahre = spinnerjahre.getValue();
+                usefulLife = spinyears.getValue();
                 return true;
             } catch (NumberFormatException e) {
-                lblacquisitionValue.clear();
-                prozent.clear();
-                restbetrag.clear();
+                lblAcquisitionValue.clear();
+                lblPercent.clear();
+                lblRemainingAmount.clear();
 
                 return false;
             }
         } else {
-            return fehlerEingabeProzent();
+            return isErrorInputbyPrecent();
         }
     }
 
     /**
      *
-     * @return ob Eingabe des Prozentwerts gültig ist
+     * @return ob Eingabe des lblPercentwerts gültig ist
      */
-    private boolean fehlerEingabeProzent() {
+    private boolean isErrorInputbyPrecent() {
         try {
-            prozentzahl = Integer.parseInt(this.prozent.getText());
-            if (prozentzahl < 0 || prozentzahl >= 100) {
+            percentNumber = Integer.parseInt(this.lblPercent.getText());
+            if (percentNumber < 0 || percentNumber >= 100) {
                 return false;
             }
-            nutzungsjahre = spinnerjahre.getValue();
+            usefulLife = spinyears.getValue();
             return true;
         } catch (NumberFormatException e) {
-            lblacquisitionValue.clear();
-            prozent.clear();
-            restbetrag.clear();
+            lblAcquisitionValue.clear();
+            lblPercent.clear();
+            lblRemainingAmount.clear();
             return false;
         }
 
@@ -182,47 +178,46 @@ public class InputController implements ChangeListener, Initializable {
      *
      * @return ob Eingabe des Anschaffungswerts gültig ist
      */
-    private boolean fehlerEingabeAnschaffungswert() {
+    private boolean isErrorInputbyAcquisitionValue() {
         int bet;
         try {
-            bet = Integer.parseInt(this.lblacquisitionValue.getText());
-            anschaff = bet;
+            bet = Integer.parseInt(this.lblAcquisitionValue.getText());
+            acquisition = bet;
 
             return bet == (int) bet && bet >= 1;
 
         } catch (NumberFormatException e) {
-            lblacquisitionValue.clear();
-            prozent.clear();
-            restbetrag.clear();
+            lblAcquisitionValue.clear();
+            lblPercent.clear();
+            lblRemainingAmount.clear();
             return false;
         }
     }
 
     private void radiobuttongroup() {
-        radioabschreibungsart.selectedToggleProperty().addListener((obserableValue, old_toggle, new_toggle) -> {
-            if (radioabschreibungsart.getSelectedToggle() != null) {
+        radDepreciationType.selectedToggleProperty().addListener((obserableValue, old_toggle, new_toggle) -> {
+            if (radDepreciationType.getSelectedToggle() != null) {
                 String rechnung;
-                if (radiodegressiv.isSelected()) {
-                    lblprozentrestbetrag.setText("Prozent: ");
-                    restbetrag.setVisible(false);
-                    prozent.setVisible(true);
-                    rechnung = radiodegressiv.getText();
+                if (radDegressive.isSelected()) {
+                    lblPercentAndRemainingAmount.setText("Percent *: ");
+                    lblRemainingAmount.setVisible(false);
+                    lblPercent.setVisible(true);
+                    rechnung = radDegressive.getText();
 
                 } else {
-                    lblprozentrestbetrag.setText("Restbetrag: ");
-                    prozent.setVisible(false);
-                    restbetrag.setVisible(true);
-                    rechnung = radiolinear.getText();
+                    lblPercentAndRemainingAmount.setText("Remaining amount *: ");
+                    lblPercent.setVisible(false);
+                    lblRemainingAmount.setVisible(true);
+                    rechnung = radLinear.getText();
                 }
             }
         });
 
     }
 
-
     @Override
     public void stateChanged(ChangeEvent e) {
-        
+
     }
 
 }

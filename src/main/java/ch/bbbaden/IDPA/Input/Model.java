@@ -16,22 +16,19 @@ import java.util.List;
  */
 public class Model {
 
-    private final String[] Konto = {"Anlagekonto", "Bank", "Abschreibung", "WB Anlagen"};
-    private String Buchungsatzl;
-    private String Buchungsatzd;
-    private String Buchungssaetzel = "";
-    private String Buchungssaetzed = "";
-    private double abschreibungsbetragl;
-    private List<Double> abschreibungsbetragd = new ArrayList<>();
-    private int anschaff;
-    private int prozentzahl;
-    private int restbetragzahl;
-    private double ergebnislinear;
-    private double degressiver_restbetrag = 0.0;
-    private String Buchungssaetze = "";
-    private int jahre;
-    private char loid;
-    private char lod;
+    private final String[] accounts = {"investment account", "bank", "depreciation", "allowance account investments"};
+    private String bookingRatesLinear = "";
+    private String bookingRatesDegressive = "";
+    private List<Double> depreciationAmountDegressive = new ArrayList<>();
+    private int acquisition;
+    private int percentNumber;
+    private int remainingValue;
+    private double outputlinear;
+    private double degressiveRemainingValue = 0.0;
+    private String bookingRates = "";
+    private int years;
+    private char directlyOrIndirectly;
+    private char linareOrDegressive;
 
     // Eine (versteckte) Klassenvariable vom Typ der eigenen Klasse
     // static variable single_instance of type Singleton 
@@ -51,52 +48,115 @@ public class Model {
         return single_instance;
     }
 
-    public char getLoid() {
-        return loid;
+    public String getBookingRatesLinear() {
+        return bookingRatesLinear;
     }
 
-    public void setLoid(char loid) {
-        this.loid = loid;
+    public String getBookingRatesDegressive() {
+        return bookingRatesDegressive;
     }
 
-    public char getLod() {
-        return lod;
+    public List<Double> getDepreciationAmountDegressive() {
+        return depreciationAmountDegressive;
     }
 
-    public void setLod(char lod) {
-        this.lod = lod;
+    public int getAcquisition() {
+        return acquisition;
     }
 
-    public int getAnschaff() {
-        return anschaff;
+    public void setAcquisition(int acquisition) {
+        this.acquisition = acquisition;
     }
 
-    public void setAnschaff(int anschaff) {
-        this.anschaff = anschaff;
+    public int getPercentNumber() {
+        return percentNumber;
     }
 
-    public int getProzentzahl() {
-        return prozentzahl;
+    public void setPercentNumber(int percentNumber) {
+        this.percentNumber = percentNumber;
     }
 
-    public void setProzentzahl(int prozentzahl) {
-        this.prozentzahl = prozentzahl;
+    public int getRemainingValue() {
+        return remainingValue;
     }
 
-    public int getRestbetragzahl() {
-        return restbetragzahl;
+    public void setRemainingValue(int remainingValue) {
+        this.remainingValue = remainingValue;
     }
 
-    public void setRestbetragzahl(int restbetragzahl) {
-        this.restbetragzahl = restbetragzahl;
+    public String getBookingRates() {
+        return bookingRates;
     }
 
-    public int getJahre() {
-        return jahre;
+    public void setBookingRates(String bookingRates) {
+        this.bookingRates = bookingRates;
     }
 
-    public void setJahre(int jahre) {
-        this.jahre = jahre;
+    public int getYears() {
+        return years;
+    }
+
+    public void setYears(int years) {
+        this.years = years;
+    }
+
+    public char getDirectlyOrIndirectly() {
+        return directlyOrIndirectly;
+    }
+
+    public void setDirectlyOrIndirectly(char directlyOrIndirectly) {
+        this.directlyOrIndirectly = directlyOrIndirectly;
+    }
+
+    public char getLinareOrDegressive() {
+        return linareOrDegressive;
+    }
+
+    public void setLinareOrDegressive(char linareOrDegressive) {
+        this.linareOrDegressive = linareOrDegressive;
+    }
+
+    public static Model getSingle_instance() {
+        return single_instance;
+    }
+
+    public static void setSingle_instance(Model single_instance) {
+        Model.single_instance = single_instance;
+    }
+    
+    /**
+     *
+     * @return Ergebnis linearer Buchführung
+     */
+    private double getOutputlinear() {
+        outputlinear = (acquisition - remainingValue) / years;
+        return outputlinear;
+    }
+
+    /**
+     *
+     * @return degressive Remaining Amount
+     */
+    private double getDegressiveRemainingValue() {
+        BigDecimal bd = null;
+        double temp = acquisition;
+        double tempbetrag;
+        int count = 1;
+        do {
+            tempbetrag = temp;
+            temp = temp - ((temp / 100) * percentNumber);
+            bd = BigDecimal.valueOf(tempbetrag - temp);
+            bd = bd.setScale(2, RoundingMode.HALF_UP);
+            depreciationAmountDegressive.add(count - 1, bd.doubleValue());
+            if (count >= years) {
+                degressiveRemainingValue = temp;
+                break;
+            }
+            count++;
+        } while (true);
+
+        System.out.println("Prozent-D:" + degressiveRemainingValue);
+        return degressiveRemainingValue;
     }
 
     /**
@@ -105,34 +165,33 @@ public class Model {
      * @return Buchungsätze
      */
     public String getBuchungssaetze(int i) {
-        switch (lod) {
+        switch (linareOrDegressive) {
             case 'l':
-                Buchungssaetze = getBuchungssaetzel(i);
+                bookingRates = getBookingRatesLinear(i);
                 break;
             case 'd':
-                Buchungssaetze = getBuchungssaetzed(i);
+                bookingRates = getBookingRatesDegressive(i);
                 break;
             default:
-                System.out.println("Fehler bei Buchungssaetze");
+                System.out.println("Error to the booking rates");
         }
-        return Buchungssaetze;
+        return bookingRates;
 
     }
 
     /**
      *
-     * @param i Anzahl Buchungssätze
-     * @return Buchungssatz degressiv
+     * @param i Anzahl Booking rates
+     * @return Booking rates degressive
      */
-    private String getBuchungssaetzed(int i) {
-        if (loid == 'd') {
-            Buchungssaetzed = i + 1 + ". " + Konto[2] + " / " + Konto[0] + " " + abschreibungsbetragd.get(i);
+    private String getBookingRatesDegressive(int i) {
+        if (directlyOrIndirectly == 'd') {
+            bookingRatesDegressive = i + 1 + ". " + accounts[2] + " / " + accounts[0] + " " + depreciationAmountDegressive.get(i);
         } else {
-//            Buchungssaetzed = i+1 + ". " + Konto[0] + "||" + Konto[1] + " " + anschaff;
-            Buchungssaetzed = i + 1 + ". " + Konto[2] + " / " + Konto[3] + " " + abschreibungsbetragd.get(i);
+            bookingRatesDegressive = i + 1 + ". " + accounts[2] + " / " + accounts[3] + " " + depreciationAmountDegressive.get(i);
         }
 
-        return Buchungssaetzed;
+        return bookingRatesDegressive;
     }
 
     /**
@@ -140,50 +199,14 @@ public class Model {
      * @param i Anzahl Buchungssätze
      * @return Buchungssatz linear
      */
-    private String getBuchungssaetzel(int i) {
-        if (loid == 'd') {
-            Buchungssaetzel = i + 1 + ". " + Konto[2] + " / " + Konto[0] + " " + round('l');
+    private String getBookingRatesLinear(int i) {
+        if (directlyOrIndirectly == 'd') {
+            bookingRatesLinear = i + 1 + ". " + accounts[2] + " / " + accounts[0] + " " + getRound('l');
         } else {
-//            Buchungssaetzel = i+1 + ". " + Konto[0] + "||" + Konto[1] + " " + anschaff;
-            Buchungssaetzel = i + 1 + ". " + Konto[2] + " / " + Konto[3] + " " + round('l');
+            bookingRatesLinear = i + 1 + ". " + accounts[2] + " / " + accounts[3] + " " + getRound('l');
         }
 
-        return Buchungssaetzel;
-    }
-
-    /**
-     *
-     * @return degressiver Restbetrag
-     */
-    private double getDegressiver_restbetrag() {
-        BigDecimal bd = null;
-        double temp = anschaff;
-        double tempbetrag;
-        int count = 1;
-        do {
-            tempbetrag = temp;
-            temp = temp - ((temp / 100) * prozentzahl);
-            bd = BigDecimal.valueOf(tempbetrag - temp);
-            bd = bd.setScale(2, RoundingMode.HALF_UP);
-            abschreibungsbetragd.add(count - 1, bd.doubleValue());
-            if (count >= jahre) {
-                degressiver_restbetrag = temp;
-                break;
-            }
-            count++;
-        } while (true);
-
-        System.out.println("Prozent-D:" + degressiver_restbetrag);
-        return degressiver_restbetrag;
-    }
-
-    /**
-     *
-     * @return Ergebnis linearer Buchführung
-     */
-    private double Linear() {
-        ergebnislinear = (anschaff - restbetragzahl) / jahre;
-        return ergebnislinear;
+        return bookingRatesLinear;
     }
 
     /**
@@ -191,7 +214,7 @@ public class Model {
      * @param lod linear oder degressiv
      * @return gerundetes Ergebniss
      */
-    public double round(char lod) {
+    public double getRound(char lod) {
         BigDecimal bd = null;
         if (2 < 0) {
             throw new IllegalArgumentException();
@@ -199,10 +222,10 @@ public class Model {
 
         switch (lod) {
             case 'l':
-                bd = BigDecimal.valueOf(Linear());
+                bd = BigDecimal.valueOf(getOutputlinear());
                 break;
             case 'd':
-                bd = BigDecimal.valueOf(getDegressiver_restbetrag());
+                bd = BigDecimal.valueOf(getDegressiveRemainingValue());
                 break;
             default:
                 break;
