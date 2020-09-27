@@ -75,8 +75,8 @@ public class InputController implements ChangeListener, Initializable {
 
     /**
      *
-     * @param event neue Stage
-     * @throws IOException Stage loader Exception
+     * @param event new stage
+      * @throws IOException Stage loader Exception
      */
     @FXML
     private void showDepreciation(ActionEvent event) throws IOException {
@@ -106,7 +106,7 @@ public class InputController implements ChangeListener, Initializable {
 
     /**
      *
-     * @return ob Datenübertragung funktioniert hat
+     * @return if the data transmission is ok
      */
     private boolean isDataTransmission() {
         if (isErrorInputbyRemainingAmount() == true && isErrorInputbyAcquisitionValue() == true) {
@@ -129,7 +129,7 @@ public class InputController implements ChangeListener, Initializable {
 
     /**
      *
-     * @return ob Eingabe des Restbetrags gültig ist
+     * @return whether the entry of the remaining amount is valid
      */
     private boolean isErrorInputbyRemainingAmount() {
         if (radLinear.isSelected()) {
@@ -155,7 +155,7 @@ public class InputController implements ChangeListener, Initializable {
 
     /**
      *
-     * @return ob Eingabe des lblPercentwerts gültig ist
+     * @return whether the input of the lblPercent value is valid
      */
     private boolean isErrorInputbyPrecent() {
         try {

@@ -30,8 +30,8 @@ public class Model {
     private char directlyOrIndirectly;
     private char linareOrDegressive;
 
-    // Eine (versteckte) Klassenvariable vom Typ der eigenen Klasse
-    // static variable single_instance of type Singleton 
+    // A (hidden) class variable of the type of its own class
+    // static variable single_instance of the singleton type
     private static Model single_instance = null;
 
     // private constructor restricted to this class itself 
@@ -123,10 +123,10 @@ public class Model {
     public static void setSingle_instance(Model single_instance) {
         Model.single_instance = single_instance;
     }
-    
+
     /**
      *
-     * @return Ergebnis linearer Buchführung
+     * @return result of linear accounting
      */
     private double getOutputlinear() {
         outputlinear = (acquisition - remainingValue) / years;
@@ -161,8 +161,8 @@ public class Model {
 
     /**
      *
-     * @param i Anzahl Buchungssätze
-     * @return Buchungsätze
+     * @param i number of booking records
+     * @return booking records
      */
     public String getBuchungssaetze(int i) {
         switch (linareOrDegressive) {
@@ -181,7 +181,7 @@ public class Model {
 
     /**
      *
-     * @param i Anzahl Booking rates
+     * @param i Number of booking rates
      * @return Booking rates degressive
      */
     private String getBookingRatesDegressive(int i) {
@@ -211,8 +211,8 @@ public class Model {
 
     /**
      *
-     * @param lod linear oder degressiv
-     * @return gerundetes Ergebniss
+     * @param lod linear or degressive
+     * @return rounded result
      */
     public double getRound(char lod) {
         BigDecimal bd = null;

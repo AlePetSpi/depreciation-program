@@ -66,7 +66,7 @@ public class OutputController implements Initializable {
     }
 
     /**
-     * Zeigt Werte an
+     * Shows the values
      */
     private void init() {
         depreciationType = model.getLinareOrDegressive() == 'l' ? "Linear" : "Degressiv";
